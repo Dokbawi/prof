@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+   <title>Portfolio</title>
+   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+   <link rel="stylesheet" type="text/css" href="/css/common.css">
+   <link rel="stylesheet" type="text/css" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+   <link rel="stylesheet" type="text/css" href="/css/index.css">
+  </head>
+  <body ng-app="common">
+  <% include ./fixMenu/header.html %>
+  <div class="warp">
+
+    <% include ./fixMenu/sideBar.html %>
+    
+    <div class="main-box">
+      <div class="image-slide" ng-controller="image-slider" >
+        <div class="image-left-btn" ng-click="slideNext(0)">
+          <i class="material-icons md-36">
+              arrow_back_ios
+          </i>
+        </div>
+          
+        <div class="image-div" ng-repeat="imageIdx in imageList" ng-style="imageIdx.divStyle">
+          <img src={{imageIdx.src}} ng-style="imageIdx.imageStyle">
+        </div>
+
+        <div class="image-right-btn" ng-click="slideNext(1)">
+          <i class="material-icons md-36">
+              arrow_forward_ios
+          </i>
+        </div>
+      </div>
+
+      <div class="item-list">
+        <div class="item-title">
+            title1
+        </div>
+        <div class="item-content">
+          <div class="item-box">
+            <img src="/image/box_test.png">
+            <span>Explanation</span>
+          </div>
+          <div class="item-box">
+            <img src="/image/box_test.png">
+            <span>Explanation</span>
+          </div>
+          <div class="item-box">
+            <img src="/image/box_test.png">
+            <span>Explanation</span>
+          </div>
+          <div class="item-box">
+            <img src="/image/box_test.png">
+            <span>Explanation</span>
+          </div>
+          <div class="item-box">
+            <img src="/image/box_test.png">
+            <span>Explanation</span>
+          </div>
+          <div class="item-box">
+            <img src="/image/box_test.png">
+            <span>Explanation</span>
+          </div>
+          <div class="item-box">
+            <img src="/image/box_test.png">
+            <span>Explanation</span>
+          </div>
+          <div class="item-box">
+            <img src="/image/box_test.png">
+            <span>Explanation</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+
+
+  <% include ./fixMenu/footer.html %>
+    <!-- <script  src="https://code.jquery.com/jquery-1.12.4.js"></script> -->
+
+    <script src="node_modules/angular/angular.js"></script>
+    <script src="node_modules/angular-sanitize/angular-sanitize.js"></script>
+    <script src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
+    
+    <script src="/js/common.js"></script>
+    <script src="/js/index.js"></script>
+
+  </body>
+</html>

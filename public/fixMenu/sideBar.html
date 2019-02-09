@@ -1,0 +1,28 @@
+<div id="sideBar" ng-controller="sideController">
+    <div class="catalog col-sm"> 게시판 </div>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item" ng-repeat="board in boardList">
+            <a href="/board/{{board.boardId}}">{{board.boardName}}</a>
+        </li>
+    </ul>
+
+    <div class="catalog col-sm"> 
+        <a href="/shop">
+            쇼핑하기 
+        </a>
+    </div>
+
+    <div class="catalog col-sm"> 
+        <a href="/shop/add">
+            쇼핑상품추가하기 
+        </a>
+    </div>
+
+
+    <div class="flex full-width" style="justify-content: center;">
+        <button class="btn-style padding-10px" ng-click="createMyBoard()">
+            게시판 생성하기
+        </button>
+    </div>
+    
+</div>

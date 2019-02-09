@@ -1,0 +1,46 @@
+#writeContent{
+    flex-direction: column;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+#boardMasterInfo{
+    padding: 10px;
+    padding-bottom: 0px;
+    align-items: flex-end;
+}
+
+#boardMasterName{
+    font-size: 30px;
+}
+
+#writeTemplet {
+    flex-direction: column;
+}
+
+#writeHead{
+    justify-content: center;
+}
+
+#boardTitle{
+    width: 800px;
+}
+
+#writeFooter{
+    margin-top: 20px;
+    justify-content: center;
+}
+
+#writeBox{
+    justify-content: center;
+    margin-top: 20px;
+}
+
+#writeView{
+    width: 800px;
+    height: 500px;
+    overflow-y: scroll;
+    border: 1px solid #ced4da; 
+}
+
+

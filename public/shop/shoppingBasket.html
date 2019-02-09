@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Portfolio</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="/css/common.css">
+  <link rel="stylesheet" type="text/css" href="/node_modules/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="/css/shop/shoppingBasket.css">
+</head>
+
+<body ng-app="common">
+
+  <% include ../fixMenu/header.html %>
+
+<div class="warp">
+
+  <% include ../fixMenu/sideBar.html %>
+
+  <div class="main-box">
+    <div id="shopBasketContent" class="flex flex-row full-width full-height padding-50px " ng-controller="shoppingBasketController">
+
+      <div class="full-width  flex-column full-height padding-box overflow-y-auto" >
+        <div class="flex full-width justify-content-center" style="margin-bottom:5px;" ng-repeat="basket in shoppingBasketList">
+          <div class="flex flex-center flex-column">
+            <img class="imageBox" src="{{basket.imageSrc}}" style="margin-bottom:5px;">
+            <span class="item-span" style="margin-bottom:5px;">{{basket.itemName}}</span>
+            <span class="item-span">{{basket.itemCnt}}개</span>
+          </div>
+        </div>
+         
+      </div>
+
+      <div class="full-width flex full-height flex-column padding-box overflow-ellipsis">
+        <div class="full-width full-height flex-column overflow-y-auto flex-1" >
+            <div class="flex item-bill-box" style="margin-bottom:10px;" ng-repeat="basket in shoppingBasketList">
+                <span class="flex-1 span-border-right">
+                  <span>이름 : </span>
+                  <span style="maring-left:5px;">{{basket.itemName}}</span>
+                </span>
+                <span class="flex-1 span-border-right" style="margin-left: 15px;">
+                  <span>갯수 : </span>
+                  <span style="maring-left:5px;">{{basket.itemCnt}}</span>
+                </span>
+                <span class="flex-1 span-money" style="margin-left: 15px;">
+                  <span>{{basket.itemPrice}}</span>
+                  <span style="maring-left:5px;">원</span>
+                </span>
+            </div>
+
+            
+        </div>
+
+        <div class="flex full-width full-height flex-column flex-1">
+          <div class="flex full-width justify-content-center flex-1">
+            <div class="flex justify-content-center account-money-box">
+                <span>총가격 : </span>
+                <span style="margin-left:5px;" ng-bind="allAccountMoney">0</span>
+                <span>원</span>
+            </div>
+          </div>
+          <div class="flex full-width justify-content-center flex-1">
+            <button class="btn-style" style="width:220px;height: 50px;" ng-click="pay()">
+              결제하기
+            </button>
+          </div>
+        </div>
+        
+
+      </div>
+
+
+    </div>
+  </div>
+
+
+</div>
+
+
+  <% include ../fixMenu/footer.html %>
+  <!-- <script  src="https://code.jquery.com/jquery-1.12.4.js"></script> -->
+
+  <script src="/node_modules/angular/angular.js"></script>
+  <script src="/node_modules/angular-sanitize/angular-sanitize.js"></script>
+  <script src="/node_modules/bootstrap/dist/js/bootstrap.js"></script>
+
+  <script src="/js/common.js"></script>
+  <script src="/js/shop/shoppingBasket.js"></script>
+
+</body>
+
+</html>

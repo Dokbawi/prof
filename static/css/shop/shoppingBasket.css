@@ -1,0 +1,47 @@
+#shopBasketContent>div{
+    flex: 1;
+    padding-top: 25px;
+    padding-bottom: 25px;
+}
+
+.imageBox{
+    width: 220px;
+    height: 200px;
+}
+
+.padding-box {
+    padding:50px 50px 0 50px;
+}
+
+.item-bill-box{
+    padding: 7px 15px;
+    border: 1px solid #e2e2e2;
+}
+
+.item-bill-box>span{
+    border-color: #e2e2e2;
+}
+
+.span-border-right {
+    border-right: 1px solid;
+}
+
+.item-bill-box>.span-money{
+    justify-content: flex-end;
+    display: flex;
+}
+
+.account-money-box{
+    width: 220px;
+    padding: 7px 15px;
+    border: 1px solid #e2e2e2;
+    align-items: center;
+    height: 50px;
+}
+
+.item-span{
+    width: 220px;
+    padding: 3px;
+    border: 1px solid #e2e2e2;
+}
+

@@ -1,0 +1,88 @@
+#shopContent>form>div{
+    flex: 1;
+    padding-top: 25px;
+    padding-bottom: 25px;
+}
+
+#itemImg{
+    width: 220px;
+    height: 200px;
+    margin-bottom: 10px;
+}
+
+#itemAddBtn{
+    width: 220px;
+    margin-bottom: 50px;
+}
+
+.tag-title{
+    width: 100px;
+    height: 50px;
+    justify-content: center;
+    border-bottom: none !important;
+}
+
+.border-right-none {
+    border-right: none !important;
+}
+
+.tag-ul{
+    overflow-y: auto;
+}
+
+.tag-border {
+    border: 2px solid #e2e2e2;
+}
+
+.tag-ul>li {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.tag-ul>li:hover {
+    background: #e2e2e2;
+    cursor: pointer;
+} 
+
+.tag-ul-active {
+    background: #e2eaaa;
+}
+
+.add-tag-ul-active {
+    background: #e2eaaa;
+}
+
+.filebox label {
+    display: inline-block; 
+    padding: .5em .75em; 
+    font-size: inherit; 
+    line-height: normal; 
+    vertical-align: middle; 
+    cursor: pointer; 
+    border-radius: .25em; 
+} 
+
+.filebox input[type="file"] {
+     /* 파일 필드 숨기기 */ 
+    position: absolute;
+    width: 1px; 
+    height: 1px; 
+    padding: 0; 
+    margin: -1px; 
+    overflow: hidden;
+    clip:rect(0,0,0,0); 
+    border: 0;
+}
+
+
+
+
+
+
+
+
+
+

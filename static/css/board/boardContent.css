@@ -1,0 +1,54 @@
+.box-head{
+    padding: 10px;
+    padding-bottom: 0px;
+    align-items: flex-end;
+}
+
+#boardContent{
+    flex-direction: column;
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-bottom: 50px;
+}
+
+#boardContentView{
+    min-height: 300px;
+    padding: 10px;
+    border: 1px solid #e2e2e2;
+}
+
+#boardContentBox {
+    border-top: 2px solid purple;
+}
+
+#commentContent{
+    height: 100px;
+    border: 1px solid #e2e2e2;
+    overflow-y:auto;
+}
+
+#boardContentFooter{
+    margin-top: 20px;
+}
+
+.box-title{
+    font-size: 30px;
+}
+
+.comment{
+    border: 1px solid #e2e2e2;
+    margin-bottom: 10px;
+}
+
+.comment div {
+    padding: 5px;
+}
+
+.comment-top{
+    background: #e2e2e2;
+}
+
+.comment-nickName{
+    color: #4b367c;
+    font-weight: bold;
+}

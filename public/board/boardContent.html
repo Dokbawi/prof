@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Portfolio</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="/css/common.css">
+  <link rel="stylesheet" type="text/css" href="/node_modules/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="/css/board/boardContent.css">
+</head>
+
+<body ng-app="common">
+
+  <% include ../fixMenu/header.html %>
+
+  <div class="warp">
+
+    <% include ../fixMenu/sideBar.html %>
+
+    <div class="main-box">
+      <div id="boardContent" class="flex full-width full-height " ng-controller="commentController">
+        <div id="boardHead" class="flex flex-row box-head">
+          <div id="boardTitle" class="box-title">
+            <%=boardMasterNickName%> 
+          </div>
+          <div>
+            의 게시판입니다.
+          </div>
+        </div>
+
+        <div id="" class="flex-column flex full-width">
+            <div id="writeHead" class="flex full-width flex-center">
+                <h2><%=boardTitle%></h2>
+            </div>
+    
+            <div id="boardContentBox" class="flex full-width">
+                <div id="boardContentView" class="full-width enter" place-text="내용을 입력해 주세요."> <%=boardContent%> </div>
+            </div>
+            <div id="commentDummy" ng-click="getCommentList('<%=boardKey%>')"></div>
+            
+            <div id="boardContentFooter" class="flex full-width flex-column ">
+                <div class="flex full-width flex-column comment" ng-repeat="comment in commentList" >
+                  <div class="flex full-width comment-top">
+                    <span class="comment-nickName">
+                      {{comment.writer}}
+                    </span>
+                  </div>
+
+                  <div class="flex full-width enter"> {{comment.content}} </div>
+                </div>
+
+                <div class="flex full-width ">
+                  <div id="commentContent" class="full-width" contenteditable="true" place-text="내용을 입력해 주세요.">
+                    
+                  </div>
+
+                  <button ng-click="writeComment('<%=boardKey%>')" class="btn-style" style="width:200px;">
+                    댓글 쓰기
+                  </button>
+                </div>
+            </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+
+  <% include ../fixMenu/footer.html %>
+  <!-- <script  src="https://code.jquery.com/jquery-1.12.4.js"></script> -->
+
+  <script src="/node_modules/angular/angular.js"></script>
+  <script src="/node_modules/angular-sanitize/angular-sanitize.js"></script>
+  <script src="/node_modules/bootstrap/dist/js/bootstrap.js"></script>
+
+  <script src="/js/common.js"></script>
+  <script src="/js/board/boardContent.js"></script>
+
+</body>
+
+</html>

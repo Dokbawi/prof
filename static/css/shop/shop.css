@@ -1,0 +1,83 @@
+#shopTitle {
+    font-weight: 800;
+    font-size: 20px;
+    border-bottom: 1px solid #e2e2e2;
+}
+
+#itemCountDiv{
+    align-items: center;
+}
+
+.item-content {
+    display: flex;
+    flex-flow: row wrap;
+    margin-left: 20px;
+}
+
+.item-box {
+    width: 200px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.item-box>div{
+    margin-top: 5px;
+}
+
+.item-content>.item-box {
+    margin: 10px 10px 0;
+}
+
+.shopList{
+    margin-bottom: 20px;
+}
+
+.tag-exp{
+    border: 1px solid #dad8de;
+    border-radius: 4px;
+    font-size: 12px;
+    padding: .2rem .4rem;
+    margin-right:2px;
+}
+
+.shopImage{
+    width: 220px;
+    height: 200px;
+}
+
+
+.shop-basket-info{
+    position: fixed;
+    display: flex;
+    flex-direction: column-reverse;
+    width: 350px;
+    bottom: 5%;
+    right: 2%;
+}
+
+.shop-basket-go{
+    height: 50px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    display: flex;
+    color: black !important;
+    border: 1px solid #e2e2e2;
+    border-radius: 8px;
+    background: #d6d243ee;
+}
+
+.shop-basket-alert{
+    height: 50px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    background: #b0e0b0;
+    border: 1px solid #e2e2e2;
+    margin-bottom: 10px;
+    color: black;
+    transition: all ease 2s 0s;
+    border-radius: 8px;
+
+}

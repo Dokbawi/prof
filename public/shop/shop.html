@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Portfolio</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="/css/common.css">
+  <link rel="stylesheet" type="text/css" href="/node_modules/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="/css/shop/shop.css">
+</head>
+
+<body ng-app="common">
+
+  <% include ../fixMenu/header.html %>
+
+<div class="warp">
+
+  <% include ../fixMenu/sideBar.html %>
+
+  <div class="main-box">
+    <div id="shopContent" class="flex flex-column full-width full-height padding-50px " ng-controller="shopController">
+      <div class="flex full-width" style="padding-top: 50px; padding-bottom: 20px;align-items: center;">
+        <select class="form-control" style="width: 130px;" ng-model="optSelected" ng-options="data as data.name for data in selectOption">
+        </select>
+        <input id="shopSearchText" ng-model="shopSearchText" type="text" class="form-control">
+        <button class="btn-style" ng-click="shopSearch()">
+          <i class="material-icons">
+            search
+          </i>
+        </button>
+      </div>
+
+      <div class=" full-width flex-column" >
+        <div class="full-width flex flex-column shopList" ng-repeat="shop in shopList">
+          <div id="shopTitle" class="full-width flex">
+            {{shop[0].tagName}}
+          </div>
+
+          <div class="full-width flex flex-row ">
+            <div class="flex item-content" ng-repeat="data in shop">
+                <div class="item-box">
+                  <img class="shopImage" src="{{data.imageSrc}}">
+                  <div class="flex">
+                    <span>이름: {{data.itemName}}</span>
+                  </div>
+                  <div class="flex">
+                    <span>가격: {{data.itemPrice}} 원</span>
+                  </div>
+                  <div class="flex flex-row">
+                    <span class="tag-exp" ng-repeat="tagList in data.itemTag">{{tagList.name}}</span>
+                  </div>
+                  <div id="itemCountDiv" class="flex">
+                    <span style="margin-right:10px;">물건 갯수: </span>
+                    <input id="itemCnt" class="form-control" type="number" min="1" max="999" value="1" style="width: 100px;">
+                  </div>
+                  <div class="flex">
+                    <button type="button" class="btn-style full-width" ng-click="addShoppingBasket(data,$event)">장바구니 넣기</button>
+                  </div>
+                </div>
+              </div>
+          </div>
+          
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+
+
+</div>
+
+
+<div class="flex shop-basket-info">
+  <a href="/shop/shoppingBasket" class="shop-basket-go full-width">
+    <i class="material-icons">
+      shopping_cart
+    </i>
+    <span>장바구니</span>
+  </a>
+  
+</div>
+
+
+  <% include ../fixMenu/footer.html %>
+  <!-- <script  src="https://code.jquery.com/jquery-1.12.4.js"></script> -->
+
+  <script src="/node_modules/angular/angular.js"></script>
+  <script src="/node_modules/angular-sanitize/angular-sanitize.js"></script>
+  <script src="/node_modules/bootstrap/dist/js/bootstrap.js"></script>
+
+  <script src="/js/common.js"></script>
+  <script src="/js/shop/shop.js"></script>
+
+</body>
+
+</html>

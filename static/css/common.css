@@ -1,0 +1,367 @@
+
+
+html,body {
+    height: 100%;
+}
+
+body{
+    display: flex;
+    display: -webkit-flex;
+    flex-direction: column;
+}
+
+button {
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+button:focus{
+    border: none;
+} 
+
+a{
+    text-decoration: none !important;
+}
+
+a:hover{
+    text-decoration: none !important;
+}
+
+ul{
+    padding: 0px;
+    margin: 0px;
+}
+
+[contentEditable=true]:empty:not(:focus):before{
+    content:attr(place-text);
+    color:grey;
+}
+
+#sideBar {
+    width: 280px;
+    height: 100%;
+    background: #17141f;
+}
+
+#sideBar li {
+    background: #17141f;
+    color: white;
+    padding-left: 50px;
+}
+
+#sideBar li:hover {
+    background: #525151;
+}
+
+#header {
+    background: #4b367c;
+    width: 100%; 
+    height: 50px;
+    text-align: center;
+}
+
+#header>div{ 
+    display: inline;
+    text-align: center;
+    height: 100%;
+} 
+
+#logo {
+    justify-content: flex-start;
+    display: flex !important;
+}
+
+#userInfo {
+    display: flex !important;
+    align-items: center;
+    justify-content: flex-end;
+}
+#loginBtn:hover {
+    background: #ccc;
+}
+
+#loginUserText {
+    margin-right: 10px;
+    color: white;
+}
+
+.flex-column { 
+    flex-direction: column;
+}
+
+.list-group-item:hover{
+    background: #525151;
+}
+
+.list-group-item a {
+    color: white;
+}
+
+.list-group-item a:hover {
+    color: white;
+}
+
+.warning{
+    color: red;
+}
+
+.warp {
+    display: flex;
+    height: 100%;
+}
+
+.enter {
+    white-space: pre-line;
+}
+
+.catalog {
+    height: 50px;
+    color: white;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #dad8de;
+}
+
+.padding-50px{
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+.catalog a {
+    color: white !important;
+}
+
+.main-box{
+    display: flex;
+    flex-flow: row wrap;
+    flex: 1;
+    width: 100%;
+    overflow-y: auto;
+}
+
+.image-slide {
+    width: 100%;
+    position: relative;
+    height: 330px;
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+    align-items: center;
+}
+
+.image-slide>.image-div{
+    position: absolute;
+    transition: all 450ms ease 0s;
+}
+
+.image-right-btn {
+    right: 10%;
+}
+
+.image-left-btn {
+    left: 10%;
+}
+
+.image-left-btn,.image-right-btn{
+    position: absolute;
+    cursor: pointer;
+    padding: 7px 0 0 7px;
+}
+
+.image-left-btn:hover,.image-right-btn:hover {
+    background-color: rgba(125,91,190,.14);
+    border-radius: 50%!important;
+}
+
+.padding-10px {
+    padding: 10px;
+}
+
+.btn-style{
+    background: #6242ad;
+    color: white;
+}
+
+.overflow-ellipsis{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.btn-style:hover{
+    background: #8959ad;;
+    color: white;
+}
+
+.flex-end{
+    justify-content: flex-end;
+}
+
+.flex-center{
+    align-items: center;
+    text-align: center;
+}
+
+.pop-close {
+  width: 600px;
+  text-align: center;
+  border-radius: 6px;
+  position: absolute;
+  z-index: 7;
+  top: 25%;
+  left: 40%;
+  margin-left: -80px;
+  border: 2px solid rgb(156, 155, 155);
+  background: white;
+}
+
+.pop-main {
+    display: flex;
+    flex-flow: row wrap;
+    width: 100%;
+    height: auto;
+}
+
+.tab-list {
+    display: flex;
+    width: 100%;
+    height: 52px;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+}
+
+.tab-content {
+    display: flex;
+    flex: 1;
+    padding: 30px 30px 15px 30px;
+}
+
+.tab-btn{
+    flex: 1;
+}
+
+.tab-btn {
+    background-color: inherit;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+}
+
+.flex{
+    display: flex;
+}
+
+.flex-row {
+    flex-flow: row wrap;
+    display: flex;
+}
+
+.tab-list .active {
+    background-color: #ccc;
+}
+
+.tab-list .tab-btn:hover {
+    background-color: #ddd;
+}
+
+.full-width {
+    width: 100% !important;
+}
+
+.full-height {
+    height: 100% !important;
+}
+
+.input-sm{
+    height: 30px;
+}
+
+.input-label{
+    font-weight: 600;
+    font-size: 12px;
+    margin: 0;
+}
+
+.left {
+    float:  left !important;
+}
+
+.none {
+    display: none;
+}
+
+.justify-content-center{
+    justify-content: center;
+}
+
+.flex-1{
+    flex: 1;
+}
+
+.flex-2{
+    flex: 2;
+}
+
+.flex-3{
+    flex: 3;
+}
+
+.popup-close-btn{
+    cursor: pointer;
+    position: absolute;
+    font-size: 20px;
+    width: 50px;
+    display: flex;
+    height: 50px;
+    justify-content: center;
+    text-align: center;
+    left: 100%;
+    font-weight: 900;
+}
+
+.overflow-y-auto{
+    overflow-y: auto;
+}
+
+.material-icons {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;  /* Preferred icon size */
+    display: inline-block;
+    line-height: 1;
+    text-transform: none;
+    letter-spacing: normal;
+    word-wrap: normal;
+    white-space: nowrap;
+    direction: ltr;
+  
+    /* Support for all WebKit browsers. */
+    -webkit-font-smoothing: antialiased;
+    /* Support for Safari and Chrome. */
+    text-rendering: optimizeLegibility;
+  
+    /* Support for Firefox. */
+    -moz-osx-font-smoothing: grayscale;
+  
+    /* Support for IE. */
+    font-feature-settings: 'liga';
+ }
+
+  /* Rules for sizing the icon. */
+.material-icons.md-18 { font-size: 18px; }
+.material-icons.md-24 { font-size: 24px; }
+.material-icons.md-36 { font-size: 36px; }
+.material-icons.md-48 { font-size: 48px; }
+
+/* Rules for using icons as black on a light background. */
+.material-icons.md-dark { color: rgba(0, 0, 0, 0.54); }
+.material-icons.md-dark.md-inactive { color: rgba(0, 0, 0, 0.26); }
+
+/* Rules for using icons as white on a dark background. */
+.material-icons.md-light { color: rgba(255, 255, 255, 1); }
+.material-icons.md-light.md-inactive { color: rgba(255, 255, 255, 0.3); }
