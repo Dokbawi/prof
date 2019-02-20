@@ -1,0 +1,43 @@
+ .shop-box {
+     padding: 50px 0px;
+     flex: 1;
+ }
+
+ .tag-exp {
+     border: 1px solid #dad8de;
+     border-radius: 4px;
+     font-size: 12px;
+     padding: .2rem .4rem;
+     margin-right: 2px;
+ }
+
+ .shop-tag-item {
+     height: 35px;
+     border: 1px solid #dad8de;
+     border-radius: 4px;
+     font-size: 15px;
+     padding: .2rem .4rem;
+     margin-right: 2px;
+     justify-content: center;
+     align-items: center;
+     text-align: center;
+     cursor: pointer;
+ }
+
+ .shop-tag-list{
+     height: 35px;
+ }
+
+ .shop-tag-item .material-icons{
+     font-size: 14px;
+     margin-left: 1px;
+ }
+
+ .shopImage{
+     width: 220px;
+     height: 200px;
+ }
+
+ .item-content{
+     margin-right: 10px;
+ }

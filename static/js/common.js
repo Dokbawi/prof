@@ -178,7 +178,7 @@ common.controller('headerController', ($scope, $compile, $http) => {
 
         // console.log($userInfo);
         let innerHtml = "";
-        // eslint-disable-next-line promise/catch-or-return
+
         $http({
             method: "POST",
             url: "/user/isLogin",
@@ -330,7 +330,7 @@ common.controller('login-popup', ($scope, $http) => {
 });
 common.controller('sideController', ($scope, $http) => {
     getBoard();
-
+    getAuthority();
 
     $scope.createMyBoard = function () {
         // eslint-disable-next-line promise/catch-or-return
@@ -356,6 +356,24 @@ common.controller('sideController', ($scope, $http) => {
                 alert(msg);
             }
         }, (response) => {});
+    }
+
+    function getAuthority() {
+        $http({
+            method: "POST",
+            url: "/user/isLogin",
+            data: {},
+            headers: {
+                'Content-Type': 'application/json; charset=utf-8'
+            }
+        }).then((res) => {
+            let data = res.data;
+            if (data.res) {
+                $scope.authority = data.authority;
+            }
+        }, (res) => {
+
+        });
     }
 
 

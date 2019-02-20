@@ -33,7 +33,7 @@ common.controller('shopAddController', function ($scope, $http, $compile) {
 
   $scope.addShopItem = () => {
     let formData = new FormData(document.getElementById('myForm'));
-    // formData.append('tagList', JSON.stringify($scope.addTagList));
+    formData.append('tagList', JSON.stringify($scope.addTagList));
     
     $http({
       method: "POST",
@@ -46,7 +46,7 @@ common.controller('shopAddController', function ($scope, $http, $compile) {
       let data = res.data;
       if (data.res) {
         alert('저장 완료');
-        // location.href = '/shop';
+        location.href = '/shop';
       } else {
         let msg = "저장실패";
         if (data.data.reason) {

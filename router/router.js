@@ -14,7 +14,6 @@ module.exports = function(app, firebase) {
     app.use(bodyParser.urlencoded({ extended: false }));
 
     app.get('/', (req, res)=> {  
-        console.log('session : ', req.session);
         res.render('index.html');
     }); 
 
@@ -108,6 +107,9 @@ module.exports = function(app, firebase) {
         if(data) {
             sendData.res = true;
             sendData.data = data;
+            if(data.id == 'admin') {
+                sendData.authority = true;
+            }
         }
         res.send(sendData);
     });

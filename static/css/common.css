@@ -123,6 +123,10 @@ ul{
     border-bottom: 1px solid #dad8de;
 }
 
+.auto-cursor{
+    cursor: auto !important;
+}
+
 .padding-50px{
     padding-left: 50px;
     padding-right: 50px;

@@ -46,6 +46,18 @@
     height: 200px;
 }
 
+.item-name{
+    text-overflow: ellipsis;
+    overflow : hidden;
+    white-space: nowrap;
+}
+
+.item-name:hover{
+    text-overflow: clip;
+    white-space: normal;
+    word-break: break-all;
+}
+
 
 .shop-basket-info{
     position: fixed;
