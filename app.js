@@ -10,6 +10,7 @@ app.use((req, res, next) => {
     res.setHeader('Cache-Control', 'private');
     next();
 });
+app.use(helmet());
 
 app.set('trust proxy', 1);
 app.use(session({
