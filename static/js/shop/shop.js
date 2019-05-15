@@ -107,9 +107,8 @@ common.controller("shopController", function($scope, $http, $compile) {
 
   function setData(data) {
     let tempObj = {};
-
     for (let i = 0; i < data.length; i++) {
-      for (let j = 0; j < data[i].itemTag.length; j++) {
+      for (let j = 0; j < (data[i].itemTag || []).length; j++) {
         let name = data[i].itemTag[j].name || "";
         let isIn = tempObj.hasOwnProperty(name);
         if (isIn) {

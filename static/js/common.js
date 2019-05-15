@@ -15,6 +15,27 @@ NodeList.prototype.remove = HTMLCollection.prototype.remove = function () {
 
 let common = angular.module('common', ['ngSanitize']);
 
+let domain = window.location.host;
+let socket = io.connect(domain);
+
+console.log('domain : ', domain);
+console.log('io : ', io);
+
+// $.ajax({
+//     url: "/rest/1/pages/245", 
+//     data: {
+//         name: "홍길동"
+//     },
+//     method: "GET",
+//     dataType: "json"
+// }).done(function (result) {
+
+// })
+
+
+
+
+
 window.onload = function () {
     Init();
 
@@ -41,7 +62,7 @@ function event() {
 /*
  *  사용법 :  div.image-slide & controller image-slide 부착
  */
-common.controller('image-slider',  ($scope) => {
+common.controller('image-slider', ($scope) => {
     let imageList = [{
             src: "/image/slideImage.png",
             imageStyle: {}
@@ -165,7 +186,7 @@ common.controller('headerController', ($scope, $compile, $http) => {
             headers: {
                 'Content-Type': 'application/json; charset=utf-8'
             }
-        // eslint-disable-next-line promise/always-return
+            // eslint-disable-next-line promise/always-return
         }).then((res) => {
             window.location.href = "/";
         }, (res) => {
@@ -191,6 +212,8 @@ common.controller('headerController', ($scope, $compile, $http) => {
 
             if (data.res) {
                 innerHtml = '<div id="loginUserText" class="float-right">' + data.data.nickName + '님</div> <button class="btn btn-sm" ng-click="logout()">로그아웃</button>';
+                socket.emit("joinRooms", res.data.data);
+                console.log('res : ', res.data);
             } else {
                 innerHtml = '<button class="btn btn-sm float-right" ng-click="loginOpen()" style="margin-right: 10px;">로그인</button> <button class="btn btn-sm float-right" ng-click="registOpen()">회원가입</button>';
             }
@@ -242,7 +265,7 @@ common.controller('login-popup', ($scope, $http) => {
         dataObj.id = id;
         dataObj.pw = pw;
         login(dataObj);
-    
+
     };
 
     function login(dataObj) {
@@ -402,6 +425,146 @@ common.controller('sideController', ($scope, $http) => {
             $scope.boardList.push(obj);
         }
     }
+});
+
+socket.on('updateInfo', (roomList) => {
+    let scope = angular.element(document.getElementById("chat")).scope();
+    if (scope) {
+        scope.$apply(() => {
+            scope.setRoomList();
+        });
+    }
+});
+
+socket.on('answerMakeRoom', (roomId) => {
+    let $chatBox = document.getElementById("chatBox");
+    let $findUserBox = document.getElementById("findUserBox")
+    let scope = angular.element(document.getElementById("chat")).scope();
+
+    $chatBox.style.display = "flex";
+    $findUserBox.style.display = "none";
+
+    if (scope) {
+        scope.$apply(() => {
+            scope.setCurrentRoomId(roomId);
+        });
+    }
+
+});
+
+socket.on('getToServerMsg', (obj) => {
+    //let obj = {}; msg, time, owner
+    let scope = angular.element(document.getElementById("chat")).scope();
+    console.log('getToServerMsg : ', obj);
+    if (scope) {
+        scope.$apply(() => {
+            scope.pushChatData(obj);
+        });
+    }
+
+});
+
+common.controller('chatController', ($scope, $compile, $http) => {
+    $scope.userList = [];
+    $scope.chatLogList = [];
+    $scope.currentRoomId = "";
+
+    let localMsgData = {};
+    getAuthority();
+
+    $scope.openChat = function (userInfo) {
+        let $findUserBox = document.getElementById("findUserBox");
+        let $chatBox = document.getElementById("chatBox");
+
+        $findUserBox.style.display = "none";
+        $chatBox.style.display = "flex";
+        socket.emit('makeRoom', userInfo);
+    }
+
+    $scope.pushChatData = function (data) {
+        //msg, time, owner
+        let obj = {};
+        obj.content = data.msg;
+        obj.time = data.time.slice(11);
+        obj.writer = data.owner;
+
+        localMsgData[data.roomId] = localMsgData[data.roomId] || [];
+        localMsgData[data.roomId].push(obj);
+
+        $scope.chatLogList = localMsgData[data.roomId];
+        setTimeout(() => {
+            let scroll = document.getElementById("chatScroll");
+            scroll.scrollTop = scroll.scrollHeight;
+        }, 50);
+    }
+
+    $scope.findUserName = function (value) {
+        let result = $.ajax({
+            url: "/user/getUserList",
+            data: {
+                "filter": $scope.filterUserName,
+                "withOutMe" : "true"
+            },
+            method: "POST",
+            async: false,
+        }).done((result) => {
+            return result.data || [];
+        }).responseJSON.data || [];
+
+        $scope.userList = result;
+    }
+
+    //메신저 박스 오픈
+    $scope.toggle = function () {
+        $scope.chatLogList = [];
+        if ($scope.authority) {
+            let $findUserBox = document.getElementById("findUserBox");
+            let $chatBox = document.getElementById("chatBox");
+
+            $findUserBox.style.display = "flex";
+            $chatBox.style.display = "none";
+        } else {
+            alert('로그인 후 이용 가능한 서비스 입니다.');
+        }
+
+    }
+
+    $scope.setRoomList = function (roomList) {
+        $scope.chatFriendsList = roomList;
+    };
+
+    $scope.send = function () {
+        let text = $scope.chatText;
+        $scope.chatText = "";
+        document.getElementById("chatInput").focus();
+        socket.emit('getToClientMsg', text, $scope.currentRoomId);
+    }
+
+    $scope.setCurrentRoomId = function (roomId) {
+        $scope.currentRoomId = roomId;
+        $scope.chatLogList = localMsgData[roomId];
+    }
+
+    function getAuthority() {
+        $http({
+            method: "POST",
+            url: "/user/isLogin",
+            data: {},
+            headers: {
+                'Content-Type': 'application/json; charset=utf-8'
+            }
+        }).then((res) => {
+            let data = res.data;
+            if (data.res) {
+                $scope.authority = data.res;
+            }
+        }, (res) => {
+
+        });
+    }
+
+    $scope.findUserName();
+
 });
 
 function addLoginPopup($compile, $scope) {

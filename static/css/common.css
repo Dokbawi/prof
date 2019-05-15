@@ -33,6 +33,10 @@ ul{
     margin: 0px;
 }
 
+li {
+    display: block;
+}
+
 [contentEditable=true]:empty:not(:focus):before{
     content:attr(place-text);
     color:grey;
@@ -86,6 +90,34 @@ ul{
     color: white;
 }
 
+#chat {
+    background: white;
+    border-radius: 4px;
+    position: absolute;
+    left: 3%;
+    bottom: 0%;
+    width: 300px;
+    border: 1px solid #e2e2e2;
+}
+
+#chatBox{
+    height: 300px;
+}
+
+#toggleMsg {
+    position: absolute;
+    bottom: 0%;
+    right: -30px;
+    background: white;
+    border: 1px solid #e2e2e2;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.chat-time {
+    font-size: 11px;
+}
+
 .flex-column { 
     flex-direction: column;
 }
@@ -100,6 +132,11 @@ ul{
 
 .list-group-item a:hover {
     color: white;
+}
+
+.user-list-li:hover{
+    background: #e2e2e2;
+    border: 1px solid #e2e2e2;
 }
 
 .warning{

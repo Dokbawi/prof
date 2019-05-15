@@ -4,7 +4,9 @@ const database = require('./database/database.js');
 const path = require('path');
 const helmet = require('helmet');
 const session = require('express-session');
-const PORT = process.env.PORT
+const PORT = process.env.PORT || 3000;
+const http = require('http').Server(app);
+const socket = require('socket.io')(http);
 
 app.use((req, res, next) => {
     res.setHeader('Cache-Control', 'private');
@@ -29,10 +31,17 @@ app.use('/css', express.static(path.join(__dirname, './static/css')));
 app.use('/js', express.static(path.join(__dirname, './static/js')));
 app.use('/image', express.static(path.join(__dirname, './static/image')));
 
-const router = require('./router/router.js')(app, database);
+const router = require('./router/router.js')(app, database, socket);
+
+const chat = require('./router/chat/socket.js')(app, database, socket);
 
 
-app.listen(PORT || 3000, function () {
+
+
+        
+
+http.listen(PORT, function () {
+
     console.log('server on');
 });
 

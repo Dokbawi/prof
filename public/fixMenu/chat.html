@@ -1,0 +1,40 @@
+<div id="chat" ng-controller="chatController">
+    <div id="chatBox" class="none"  ng-style=""> 
+        <div id="chatLog" class="flex flex-2 flex-column full-height" >
+            <div id="chatScroll" class="overflow-y-auto flex-1 full-width full-height">
+                <ul class="list-group full-height">
+                    <li class="full-width padding-10px" ng-repeat="log in chatLogList">
+                        <span class="chat-writer chat-span" ng-style="chatLogStyle">{{ log.writer }} : </span>
+                        <span class="chat-content chat-span" ng-style="chatLogStyle">{{ log.content }}</span>
+                        <span class="chat-time chat-span" ng-style="chatLogStyle">{{ log.time }}</span>
+                    </li>
+                </ul>
+            </div>
+            <form class="full-width flex" style="height: 30px;">
+                <textarea id="chatInput" class="flex-2 overflow-y-auto" style="border-radius: 0px;" ng-model="chatText" autocomplete="off" rows="4" cols="10" style="resize: none;"></textarea>
+                <button class="flex-1 btn-style" ng-click="send()">send</button>
+            </form>
+        </div>
+    </div>  
+
+    <div id="findUserBox" class="none flex-column" style="height:300px;">
+        <div class="flex flex-1 overflow-y-auto" style="height:100%;">
+            <ul class="list-group full-width " style="margin:15px;">
+                <li class="user-list-li" ng-repeat="user in userList" ng-click="openChat(user)">{{user.nickName}}</li>
+            </ul>
+        </div>
+
+        <div class="flex" style="height:30px;">
+            <input id="findUserInput" name="findUserName" ng-model="filterUserName" class="form-controll full-width" ng-change="findUserName()"> 
+        </div>
+    </div>
+
+
+    
+    <div id="toggleMsg" ng-click="toggle()">
+        <i class="material-icons">
+            message
+        </i>
+    </div>
+</div>
+ 
