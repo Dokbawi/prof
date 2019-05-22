@@ -13,7 +13,6 @@ common.controller('shopManageController', function ($scope, $http, $compile) {
     dataObj.code = $code.value;
     dataObj.name = $name.value;
 
-    console.log('dataObj :  ' ,dataObj)
     $http({
       method: "POST",
       url: "/shop/addTag",
@@ -22,7 +21,6 @@ common.controller('shopManageController', function ($scope, $http, $compile) {
     }).then(function mySuccess(res) {
       let data = res.data;
 
-      console.log('datga : ' , data);
       if (data.res) {
         getTagData();
         $name.value = "";
@@ -38,7 +36,6 @@ common.controller('shopManageController', function ($scope, $http, $compile) {
   }
 
   $scope.removeTag = (data) => {
-    console.log('removeTag : ', data);
     let dataObj = {};
 
     dataObj.removeTagKey = data.key;
@@ -63,12 +60,9 @@ common.controller('shopManageController', function ($scope, $http, $compile) {
   }
 
   $scope.deleteItem = (data) => {
-    console.log('deleteItem : ', data);
     let dataObj = {};
 
     dataObj.deleteItemKey = data.key;
-    console.log('deleteItem : ', data);
-
     $http({
       method: "POST",
       url: "/shop/deleteItem",

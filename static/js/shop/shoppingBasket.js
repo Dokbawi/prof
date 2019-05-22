@@ -20,7 +20,6 @@ common.controller('shoppingBasketController', function ($scope, $http, $compile)
     }).then(function mySuccess(res) {
       let data = res.data;
 
-      console.log('datad : ', data);
       if (data.res) {
         alert("결제 성공 : " + data.data);
         location.href = "/shop";
@@ -45,7 +44,6 @@ common.controller('shoppingBasketController', function ($scope, $http, $compile)
     }).then(function mySuccess(res) {
       let data = res.data;
 
-      console.log('datad : ', data);
       if (data.res) {
 
         setShoppBasketData(data.data);

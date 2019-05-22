@@ -74,6 +74,12 @@ module.exports = function (app, firebase, io) {
                     sendData.res = false;
                     return true;
                 }
+
+                if (nickName == data.nickName) {
+                    sendData.data.reason = "닉네임 중복";
+                    sendData.res = false;
+                    return true;
+                }
             });
         }).then(() => {
             if (sendData.res) {

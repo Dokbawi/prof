@@ -471,12 +471,7 @@ module.exports = function (app, firebase) {
                         let update = {};
                         sendData.res = true;
                         update['/shop/itemList/' + tempList[0].key] = {};
-                        console.log('deleteImageUrl2 : ', tempList);
-                        console.log('deleteImageUrl3 : ', deleteImageUrl);
-
                         firebase.db.ref().update(update);
-
-
                         fs.unlinkSync("static/" + deleteImageUrl.substring(1, deleteImageUrl.length));
                     }
                 }

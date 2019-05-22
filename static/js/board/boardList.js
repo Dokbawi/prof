@@ -31,7 +31,7 @@ common.controller('boardController', function ($scope, $http, $compile) {
 
         dataObj.boardIdx = idx;
         dataObj.showOnePage = showOnePage;
-        dataObj.boardId = window.location.pathname.split('/')[2];
+        dataObj.boardId = document.getElementById("boardWrite").getAttribute("href").split('/')[3];
         
         $http({
             method:"POST",

@@ -15,7 +15,6 @@ module.exports = function(app, firebase) {
         let renderUrl = 'board/boardList.html';
         let renderData = {};
 
-        
         let masterKey = await firebase.db.ref('user').orderByChild('id').equalTo(id).once('value').then(function(snapshot){
             let data = snapshot.val();
             let returnData = "";
@@ -77,8 +76,6 @@ module.exports = function(app, firebase) {
             data : {}
         };
 
-        console.log('createBOard');
-
         if(login) {
             let userInfo = firebase.db.ref('/user');
             let userKey = "";
@@ -105,8 +102,6 @@ module.exports = function(app, firebase) {
                     }
                     return false;
                 });
-
-                console.log('isAlreayCreate : ' , isAlreayCreate);
 
                 if(!isAlreayCreate){
                     let key = boardInfo.push().key;
@@ -175,8 +170,6 @@ module.exports = function(app, firebase) {
                     return returnData
                 });
 
-                console.log('boardKey : ' , boardKey);
-
                 boardInfo.orderByChild('key').equalTo(boardKey).once('value').then(function(snapshot) {
                     if(!snapshot.val()){
                         sendData.res = false;
@@ -184,8 +177,6 @@ module.exports = function(app, firebase) {
                     }else{
                         let boardListInfo = firebase.db.ref('/board/boardList');
                         let key = boardListInfo.push().key;
-                        console.log('key : ', key);
-
                         firebase.db.ref('/board/boardList/' + boardKey + '/' + key).set({
                             "key" : key,
                             "boardTitle" : boardTitle,
@@ -305,6 +296,7 @@ module.exports = function(app, firebase) {
             res: false,
             data : [],
         };
+        
 
         let boardKey = await firebase.db.ref('board/userBoardInfo').orderByChild('masterId').equalTo(boardId).once('value').then(function(snapshot) {
             let data = snapshot.val();
@@ -324,11 +316,12 @@ module.exports = function(app, firebase) {
             snap.forEach(snap => {
                 let obj = {};
                 let date = snap.val().insertDate;
+                date = moment(date);
 
                 if(moment().isSame(new Date(snap.val().insertDate), 'day')) {
-                    date = moment(date).format('HH:mm');
+                    date = date.format('HH:mm');
                 }else {
-                    date = moment(date).format('MM-DD');
+                    date = date.format('MM-DD');
                 }
 
                 obj.boardTitle = snap.val().boardTitle;
@@ -339,6 +332,7 @@ module.exports = function(app, firebase) {
             });
 
             row = row.reverse();
+
             return row.slice(boardIdx * 10 * showOnePage, ((boardIdx + 1) * 100 > row.length) ? row.length : (boardIdx + 1) * 10 * showOnePage);
         });;
 
@@ -354,6 +348,7 @@ module.exports = function(app, firebase) {
         let boardNum = req.params.idx;
         let renderData = {};
         let renderUrl = "";
+
  
         let boardList = await firebase.db.ref('/board/boardList').once('value').then(function(snapshot){
             let data = snapshot.val();
@@ -362,6 +357,7 @@ module.exports = function(app, firebase) {
         });
 
         boardList = showBoardContent(boardList, boardNum);
+
 
         boardList.boardContent =textToHtml(boardList.boardContent);
 
@@ -422,7 +418,6 @@ module.exports = function(app, firebase) {
                 let obj = snap.val();
                 obj.content = textToHtml(obj.content);
 
-                console.log('snap.val().content : ' , obj.content);
                 row.push(obj);
             });
             return row;

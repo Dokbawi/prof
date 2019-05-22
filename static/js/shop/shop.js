@@ -77,7 +77,7 @@ common.controller("shopController", function($scope, $http, $compile) {
       data: {},
       headers: { "Content-Type": "application/json; charset=utf-8" }
     }).then(
-      function mySuccess(res) {
+      function mySuccess(res) { 
         let data = res.data;
         test = data.data;
         if (data.res) {

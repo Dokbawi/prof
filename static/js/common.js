@@ -18,9 +18,6 @@ let common = angular.module('common', ['ngSanitize']);
 let domain = window.location.host;
 let socket = io.connect(domain);
 
-console.log('domain : ', domain);
-console.log('io : ', io);
-
 // $.ajax({
 //     url: "/rest/1/pages/245", 
 //     data: {
@@ -213,7 +210,6 @@ common.controller('headerController', ($scope, $compile, $http) => {
             if (data.res) {
                 innerHtml = '<div id="loginUserText" class="float-right">' + data.data.nickName + '님</div> <button class="btn btn-sm" ng-click="logout()">로그아웃</button>';
                 socket.emit("joinRooms", res.data.data);
-                console.log('res : ', res.data);
             } else {
                 innerHtml = '<button class="btn btn-sm float-right" ng-click="loginOpen()" style="margin-right: 10px;">로그인</button> <button class="btn btn-sm float-right" ng-click="registOpen()">회원가입</button>';
             }
@@ -455,7 +451,6 @@ socket.on('answerMakeRoom', (roomId) => {
 socket.on('getToServerMsg', (obj) => {
     //let obj = {}; msg, time, owner
     let scope = angular.element(document.getElementById("chat")).scope();
-    console.log('getToServerMsg : ', obj);
     if (scope) {
         scope.$apply(() => {
             scope.pushChatData(obj);

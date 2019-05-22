@@ -17,8 +17,6 @@ common.controller('writeController', function ($scope, $http, $compile) {
         }).then(function mySuccess(res) {
              let data = res.data;
 
-             console.log('datA : ', data);
-
              if(data.res) {
                location.href= data.data.domain;
              }else{

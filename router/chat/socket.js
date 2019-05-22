@@ -26,7 +26,7 @@ module.exports = function (app, firebase, io) {
             let obj = {};
             obj.msg = msg;
             obj.time = moment().format('YYYY/MM/DD,HH:mm');
-            obj.owner = socket.userInfo.nickName;
+            obj.owner = (socket.userInfo || {}).nickName || "";
             obj.roomId = roomId;
             console.log('getToClientMsg : ', obj);
             io.to(roomId).emit('getToServerMsg', obj);
@@ -53,7 +53,7 @@ module.exports = function (app, firebase, io) {
 
             let isExistRoom = await common.dbGetData(firebase, {
                 "data" : roomId,
-                "url" : "/room",
+                "url" : "/room/" + socket.userInfo.key,
                 "orderId": "roomId"
             });
 

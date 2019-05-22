@@ -205,6 +205,10 @@ li {
     left: 10%;
 }
 
+.btn-sm{
+    background: white !important;
+}
+
 .image-left-btn,.image-right-btn{
     position: absolute;
     cursor: pointer;

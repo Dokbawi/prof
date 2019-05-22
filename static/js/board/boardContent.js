@@ -9,7 +9,6 @@ common.controller('commentController', function ($scope, $http, $compile) {
 
     $scope.getCommentList = function(key) { 
         let dataObj = {};
-        console.log('hi');
         dataObj.key = key;
 
         $http({
@@ -20,7 +19,6 @@ common.controller('commentController', function ($scope, $http, $compile) {
         }).then(function mySuccess(res) {
              let data = res.data;
 
-             console.log('data : ', data);
 
              if(data.res) {
                 $scope.commentList = data.data;
@@ -31,15 +29,10 @@ common.controller('commentController', function ($scope, $http, $compile) {
 
     $scope.writeComment = function(key) {
         let comment = document.getElementById("commentContent").innerHTML;
-        console.log('key : ',  key);
-        console.log('comment', comment);
-
         let dataObj = {};
 
         dataObj.key = key;
         dataObj.content = comment.trim();
-
-        console.log('dataObj : ' ,dataObj);
 
         $http({
             method:"POST",
@@ -49,7 +42,6 @@ common.controller('commentController', function ($scope, $http, $compile) {
         }).then(function mySuccess(res) {
              let data = res.data;
              document.getElementById("commentContent").innerHTML = "";
-             console.log('data : ', data);
 
              if(data.res) {
                 $scope.getCommentList(key);
