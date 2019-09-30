@@ -10,10 +10,50 @@ module.exports = function(app, firebase) {
     app.use(bodyParser.json());
     app.use(cookieParser());
 
+    app.get('/board/:id/page/:pageNum', async (req, res) => {
+        let id = req.params.id;
+        let pageNum = req.params.pageNum;
+        let renderUrl = 'board/boardList.html';
+        let renderData = {};
+
+        renderData.pageNum = pageNum;
+
+        let masterKey = await firebase.db.ref('user').orderByChild('id').equalTo(id).once('value').then(function(snapshot){
+            let data = snapshot.val();
+            let returnData = "";
+            if(data) {
+                data = data[Object.keys(data)[0]];
+                returnData = data.key;
+                renderData.boardMasterNickName = data.nickName;
+                renderData.boardMasterId = data.id;
+            }
+            return returnData;
+        });
+
+        let boardKey = await firebase.db.ref('board/userBoardInfo').orderByChild('masterKey').equalTo(masterKey).once('value').then(function(snapshot) {
+            let data = snapshot.val();
+            let returnData = "";
+            if(data) {
+                data = data[Object.keys(data)[0]];
+                returnData = data.key;
+            }
+            return returnData
+        });
+
+        if(!(masterKey && boardKey)) {
+            res.redirect('/');
+        }else{
+            res.render(renderUrl, renderData);
+        }
+    });
+
     app.get('/board/:id', async (req, res) => { 
         let id = req.params.id;
         let renderUrl = 'board/boardList.html';
         let renderData = {};
+        let pageNum = 1;
+
+        renderData.pageNum = pageNum;
 
         let masterKey = await firebase.db.ref('user').orderByChild('id').equalTo(id).once('value').then(function(snapshot){
             let data = snapshot.val();

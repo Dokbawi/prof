@@ -18,6 +18,8 @@
     <% include ../fixMenu/sideBar.html %>
 
     <div class="main-box">
+
+      <input id="pageNum" type="hidden" value="<%=pageNum%>">
       <div id="boardList" class="flex full-width full-height" ng-controller="boardController">
         <div id="boardHead" class="flex flex-row board-title">
           <div id="boardTitle">
@@ -33,23 +35,25 @@
           <div id="boardRowList" class="flex full-width">
             <div class="board-list flex-row full-width" ng-repeat="boardItem in boardList">
                 <div class="item-head border-item-list flex">
-                  <span>
-                    {{boardItem.head}}
+                  <span ng-bind="boardItem.head">
+                    <!-- {{boardItem.head}} -->
                   </span>
                 </div>
                 <div class="item-title border-item-list flex">
                   <a title="{{boardItem.title}}" href="/boardList/{{boardItem.domainShowIdx}}">
-                      {{boardItem.title}}
+                      <!-- {{boardItem.title}} -->
+                      <div ng-bind="boardItem.title">
+                      </div>
                   </a>
                 </div>
                 <div class="item-writer border-item-list flex">
-                  <span>
-                    {{boardItem.writer}}
+                  <span ng-bind="boardItem.writer">
+                    <!-- {{boardItem.writer}} -->
                   </span>
                 </div>
                 <div class="item-data border-item-list flex">
-                  <span>
-                    {{boardItem.date}}
+                  <span ng-bind="boardItem.date">
+                    <!-- {{boardItem.date}} -->
                   </span>
                 </div>
               </div>

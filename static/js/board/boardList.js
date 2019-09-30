@@ -5,12 +5,17 @@ window.onload = function () {
 
 common.controller('boardController', function ($scope, $http, $compile) {
     let showOnePage = 20;
-    let countBoardIdx = 0;
+    let countBoardIdx =  Math.floor((document.getElementById("pageNum").value - 1) / 10);
 
-    getBoardList(countBoardIdx, showOnePage , 0, true);
+    let pageNum = document.getElementById("pageNum").value - 1;
+    let boardMasterId = document.getElementById("boardWrite").getAttribute("href").split('/')[3];
+    console.log('pageNum : ', pageNum);
+    console.log('countBoardIdx : ', countBoardIdx);
+
+    getBoardList(countBoardIdx, showOnePage , pageNum, true);
 
     $scope.showBoard = function(idx, event) { 
-        getBoardList(countBoardIdx, showOnePage, idx, true);
+        window.location.href = "/board/" + boardMasterId + "/page/" + (idx + 1);
     }
 
     $scope.pageNext = function() {
@@ -31,7 +36,7 @@ common.controller('boardController', function ($scope, $http, $compile) {
 
         dataObj.boardIdx = idx;
         dataObj.showOnePage = showOnePage;
-        dataObj.boardId = document.getElementById("boardWrite").getAttribute("href").split('/')[3];
+        dataObj.boardId = boardMasterId;
         
         $http({
             method:"POST",
