@@ -42,9 +42,6 @@ module.exports = function (app, firebase) {
     app.get('/shop/shopManage', async (req, res) => {
         let auth = common.checkAuth(req);
 
-        auth = 2;
-
-
         if (auth == 2) { //임시 방편 권한
             res.render('shop/shopManage.html')
         } else {

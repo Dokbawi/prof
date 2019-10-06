@@ -53,6 +53,7 @@ common.controller('shoppingBasketController', function ($scope, $http, $compile)
           msg += data.data.reason;
         }
         alert(msg);
+        window.location.href = '/';
       }
     }, function myError(res) {});
   }

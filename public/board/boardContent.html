@@ -42,12 +42,14 @@
             <div id="boardContentFooter" class="flex full-width flex-column ">
                 <div class="flex full-width flex-column comment" ng-repeat="comment in commentList" >
                   <div class="flex full-width comment-top">
-                    <span class="comment-nickName">
-                      {{comment.writer}}
+                    <span class="comment-nickName" ng-bind="comment.writer">
+                      <!-- {{comment.writer}} -->
                     </span>
                   </div>
 
-                  <div class="flex full-width enter"> {{comment.content}} </div>
+                  <div class="flex full-width enter" ng-bind="comment.content"> 
+                    <!-- {{comment.content}}  -->
+                  </div>
                 </div>
 
                 <div class="flex full-width ">

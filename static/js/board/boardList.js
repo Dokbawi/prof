@@ -96,9 +96,12 @@ common.controller('boardController', function ($scope, $http, $compile) {
         }
 
         text += '</ul>';
-
-        textToTag = angular.element(text);
-
-        angular.element(document.getElementById("pagingList")).append($compile(textToTag)($scope));
+        if(length){
+            textToTag = angular.element(text);
+            angular.element(document.getElementById("pagingList")).append($compile(textToTag)($scope));
+        }else{
+            return;
+        }
+        
     }
 });
