@@ -2,16 +2,16 @@
 웹 사이트에서 쉽게 볼 수 있는 로그인, 게시판, 채팅 등등 기본적인 기능을 구현해놓은 포트폴리오입니다.
 # 사용된 기술
 ## ClientSide
-* angularJs
+* AngularJs
 * Html
-* css
-* javscript
+* Css
+* Javscript
 ## ServerSide
-* nodejs
-* express
-* socketIO
+* Nodejs
+* Express
+* SocketIO
 ## DB
-* firebase
+* Firebase
 # 테스트 방법
 ## **접속하기**
 * https://myproject0015.herokuapp.com 에 접속 합니다.
